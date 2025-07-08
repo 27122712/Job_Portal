@@ -1,0 +1,9 @@
+/vendor/
+uploads/
+.env
+.DS_Store
+*.log
+*.zip
+node_modules/
+*.bak
+Thumbs.db
