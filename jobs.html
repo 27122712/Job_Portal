@@ -12,16 +12,14 @@
     }
   </style>
 </head>
-<body class="text-white font-sans">
+<body class="text-white font-sans pt-32">
+  
 
-  <!-- Navbar -->
-  <nav class="py-6 top-0 w-full z-50">
-    <div class="max-w-7xl mx-auto bg-[#e4dcf4] rounded-xl px-6 py-4 flex justify-between items-center text-gray-800">
-      <div class="flex flex-col items-start">
-        <img src="https://iparable.co.in/images/svg/logo.png" alt="Logo" class="h-10">
-        <span class="text-xs font-medium">• Innovation • Technology • Excellence</span>
-      </div>
-      <ul class="flex space-x-8 font-medium text-[16px]">
+  <!-- 🔷 Navbar -->
+<nav class="py-6 fixed top-0 w-full z-50">
+    <div class="max-w-7xl mx-auto bg-[#e4dcf4] rounded-xl px-6 py-4 flex justify-between items-center">
+      <img src="https://iparable.co.in/images/svg/logo.png" class="h-10" />
+      <ul class="flex space-x-8 text-gray-800 font-medium text-[16px]">
         <li><a href="index.html" class="hover:text-blue-700">Home</a></li>
         <li><a href="about.html" class="hover:text-blue-700">About</a></li>
         <li><a href="jobs.html" class="hover:text-blue-700">Jobs</a></li>
@@ -30,9 +28,45 @@
     </div>
   </nav>
 
+<!-- 🔎 Filters & Search Section -->
+<div class="max-w-4xl mx-auto mb-6 px-4 py-6 bg-white bg-opacity-80 backdrop-blur rounded-xl shadow-md">
+  <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+
+    <!-- Location Filter -->
+    <div class="flex items-center">
+      <label for="locationFilter" class="mr-2 font-semibold text-gray-700">Filter by Location:</label>
+      <select id="locationFilter" onchange="filterJobs()" class="p-2 border border-gray-300 rounded-md text-black">
+        <option value="all">All Locations</option>
+        <option value="Noida">Noida</option>
+        <option value="Delhi">Delhi</option>
+        <option value="Bangalore">Bangalore</option>
+      </select>
+    </div>
+
+    <!-- Job Title Search pushed to right -->
+    <div class="flex items-center ml-auto">
+      <label for="searchInput" class="mr-2 font-semibold text-gray-700">Search by Job:</label>
+      <select id="searchInput" onchange="filterJobs()" class="p-2 border border-gray-300 rounded-md text-black">
+        <option value="all">All Jobs</option>
+        <option value="Software Developer">Software Developer</option>
+        <option value="UI/UX Designer">UI/UX Designer</option>
+        <option value="Marketing">Marketing</option>
+      </select>
+    </div>
+
+  </div>
+</div>
+
+
+  </div>
+</div>
+
+
+
+
   <div class="max-w-4xl mx-auto mt-20 space-y-6">
   <!-- 💼 Job Card 1 -->
-  <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 mb-10 text-black">
+<div class="job-card max-w-3xl mx-auto bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 mb-10 text-black" data-location="Noida">
     <div class="p-6 border-b">
       <div class="flex justify-between items-start gap-4 flex-wrap">
         <div>
@@ -106,13 +140,13 @@
   </div>
 
   <!-- 💼 Job Card 2 -->
-  <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 mb-10 text-black">
+<div class="job-card max-w-3xl mx-auto bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 mb-10 text-black" data-location="Bangalore">
     <div class="p-6 border-b">
       <div class="flex justify-between items-start gap-4 flex-wrap">
         <div>
           <h3 class="text-2xl font-bold text-gray-800 mb-2 hover:text-blue-600 transition">UI/UX Designer</h3>
           <div class="flex flex-wrap gap-4 text-sm text-gray-600">
-            <div class="flex items-center gap-2">📍 Noida</div>
+            <div class="flex items-center gap-2">📍 Bangalore</div>
             <div class="flex items-center gap-2">⏱ Full-time</div>
           </div>
         </div>
@@ -179,6 +213,81 @@
     </div>
   </div>
 
+  <!-- 💼 Job Card 3 -->
+<div class="job-card max-w-3xl mx-auto bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 mb-10 text-black" data-location="Delhi">
+    <div class="p-6 border-b">
+      <div class="flex justify-between items-start gap-4 flex-wrap">
+        <div>
+          <h3 class="text-2xl font-bold text-gray-800 mb-2 hover:text-blue-600 transition">Marketing</h3>
+          <div class="flex flex-wrap gap-4 text-sm text-gray-600">
+            <div class="flex items-center gap-2">📍 Delhi</div>
+            <div class="flex items-center gap-2">⏱ Full-time</div>
+          </div>
+        </div>
+        <div class="text-blue-600 text-sm font-semibold">₹4-5 LPA</div>
+      </div>
+      <p class="text-gray-600 mt-4">Encompasses all the activities a company undertakes to promote and sell its products or services.</p>
+    </div>
+    <div class="p-6 flex justify-between items-center bg-gray-50 flex-wrap gap-4">
+      <div class="flex gap-4 text-sm text-gray-600">
+        <button class="hover:text-red-500 transition">❤️ Save Job</button>
+        <button onclick="toggleShare(true)" class="hover:text-blue-500 transition">🔗 Share</button>
+      </div>
+      <button onclick="toggleModal(true)" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-5 py-2 rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition">Apply Now</button>
+    </div>
+  </div>
+
+    <!-- 📄 Application Modal -->
+  <div id="formModal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center p-4 z-50 hidden">
+    <div class="bg-white rounded-2xl max-w-2xl w-full shadow-xl overflow-y-auto max-h-[90vh] relative animate-fadeIn">
+      <div class="p-6 border-b flex justify-between items-center">
+        <h2 class="text-xl font-bold text-gray-800">Apply for Marketing</h2>
+        <button onclick="toggleModal(false)" class="text-gray-400 hover:text-red-600 text-xl font-bold transition">&times;</button>
+      </div>
+      <form class="p-6 space-y-5" action="submit_application.php" method="POST" enctype="multipart/form-data">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="text-sm font-medium text-gray-700">First_name *</label>
+            <input name="first_name" required type="text" class="w-full mt-1 p-3 border rounded-xl focus:ring-2 focus:ring-blue-500" />
+          </div>
+          <div>
+            <label class="text-sm font-medium text-gray-700">Last_name *</label>
+            <input name="last_name" required type="text" class="w-full mt-1 p-3 border rounded-xl focus:ring-2 focus:ring-blue-500" />
+          </div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="text-sm font-medium text-gray-700">Email *</label>
+            <input name="email" required type="email" class="w-full mt-1 p-3 border rounded-xl focus:ring-2 focus:ring-blue-500" />
+          </div>
+          <div>
+            <label class="text-sm font-medium text-gray-700">Phone *</label>
+            <input name="phone" required type="tel" class="w-full mt-1 p-3 border rounded-xl focus:ring-2 focus:ring-blue-500" />
+          </div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="text-sm font-medium text-gray-700">Experience *</label>
+            <input name="experience" required placeholder="e.g., 2 years" class="w-full mt-1 p-3 border rounded-xl focus:ring-2 focus:ring-blue-500" />
+          </div>
+          <div>
+            <label class="text-sm font-medium text-gray-700">Education *</label>
+            <input name="education" required placeholder="e.g., B.Tech" class="w-full mt-1 p-3 border rounded-xl focus:ring-2 focus:ring-blue-500" />
+          </div>
+        </div>
+        <div>
+          <label class="text-sm font-medium text-gray-700">Resume/CV *</label>
+          <input name="resume" type="file" accept=".pdf,.doc,.docx" required class="block mt-1 w-full p-3 border rounded-xl cursor-pointer text-gray-700" />
+        </div>
+        <div class="flex justify-end gap-4 pt-4">
+          <button type="button" onclick="toggleModal(false)" class="px-4 py-2 text-sm border rounded-lg text-gray-700 hover:bg-gray-100">Cancel</button>
+          <button type="submit" class="px-5 py-2 text-sm bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
     <!-- 🔗 Share Modal -->
   <div id="shareModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
     <div class="bg-white p-6 rounded-xl shadow-xl w-full max-w-sm text-center relative">
@@ -206,6 +315,26 @@
     function toggleShare(show) {
       document.getElementById("shareModal").classList.toggle("hidden", !show);
     }
+  function filterJobs() {
+    const selectedLocation = document.getElementById("locationFilter").value.toLowerCase();
+    const selectedJob = document.getElementById("searchInput").value.toLowerCase();
+
+    const jobCards = document.querySelectorAll(".job-card");
+
+    jobCards.forEach(card => {
+      const location = card.getAttribute("data-location").toLowerCase();
+      const title = card.querySelector("h3").innerText.toLowerCase();
+
+      const matchesLocation = (selectedLocation === "all" || location === selectedLocation);
+      const matchesJob = (selectedJob === "all" || title === selectedJob);
+
+      if (matchesLocation && matchesJob) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  }
   </script>
 
   </div>

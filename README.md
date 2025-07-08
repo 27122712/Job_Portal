@@ -20,6 +20,7 @@ A fully responsive and modern job portal built with HTML, Tailwind CSS, PHP, and
 - PHPMailer
 - Git + GitHub
 
+
 ## 🛠 Setup
 
 1. Clone this repo:
